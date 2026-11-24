@@ -65,7 +65,10 @@ function SettingsPage() {
     toast.success(v ? `Budget set to ${formatMoney(v, settings.currency)}` : "Budget turned off");
   };
   const exportCsv = () => {
-    if (!expenses.length) return toast("No expenses to export yet");
+    if (!expenses.length) {
+      toast("No expenses to export yet");
+      return;
+    }
     const url = URL.createObjectURL(new Blob([toCsv(expenses)], { type: "text/csv" }));
     const a = document.createElement("a");
     a.href = url;
